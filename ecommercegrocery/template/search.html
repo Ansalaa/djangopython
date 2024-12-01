@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<center>
+    <div class="container mt-3">
+{% if pro == None %}
+
+<h2 class="text-center text-light">Search Products</h2>
+<form method="POST" >
+    {% csrf_token %}
+    <div class="mb-3">
+        <input type="text" class="form-control" name="q">
+        <input type="submit" class="btn btn-secondary " >
+    </div>
+</form>
+</div>
+    {% else %}
+
+    <section class="categories overflow-hidden">
+    <div class="container">
+        <div class="open-up" data-aos="zoom-out">
+</center>
+        <div class="row">
+            <div class="container mt-3 bg-light text-light">
+				{% for i in pro %}
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="{{i.image.url}}" height="250px" width="100%" alt=""></a>
+						</div>
+						<h3>{{i.name}}</h3>
+<!--						<p>{{i.desc}}</p>-->
+						<p class="product-price"><span>₹{{i.price}}</span></p>
+<!--						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>-->
+						<a href="{% url 'shop:details' i.id %}" class="boxed-btn mt-4">Details</a>
+					</div>
+				</div>
+            </div>
+        {% empty %}
+            <h2 class="text-center">No Results</h2>
+            {% endfor %}
+
+
+        </div>
+</div>
+</div>
+</section>
+
+{% endif %}
+
+{% endblock %}

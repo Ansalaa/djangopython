@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-3">
+<h2 class="text-center p-5 light">Shopping Cart</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered w-75 mx-auto">
+            <tr>
+                <th colspan="6" class="text-center">Cart Items</th>
+            </tr>
+            <tr>
+                <th scope="col">Products</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Subtotal</th>
+                <th></th>
+            </tr>
+
+            {% for i in cart %}
+            <tr>
+                <th scope="row">
+                    <div class="d-flex align-items-center mt-2">
+                        <img src="{{i.product.image.url}}" class="img-fluid rounded-circle" width="100px" height="250px" alt="">
+                    </div>
+                </th>
+                <td class="py-5">{{i.product.name}}</td>
+                <td class="py-5">{{i.product.price}}</td>
+                <td class="py-5">{{i.quantity}}</td>
+                <td class="py-5">{{i.subtotel}}</td>
+                <td>
+
+                    {% if i.product.stock > 0 %}
+                    <a href="{% url 'cart:addcart' i.product.id %}"><i class="fa-duotone fa-solid fa-circle-plus mt-5"></i></a>
+                    <a href="{% url 'cart:cart_delete' i.product.id %}"><i class="fa-solid fa-trash"></i></a>
+                    <a href="{% url 'cart:cart_remove' i.product.id %}"><i class="fa-duotone fa-solid fa-circle-minus"></i></a>
+                    {% else %}
+                    <a href=""><i class="fa-solid fa-trash mt-5"></i></a>
+                    <a href="{% url 'cart:cart_delete' i.product.id %}"><i class="fa-duotone fa-solid fa-circle-minus"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered w-25 ml-5 mt-5">
+            <thead>
+            <tr>
+                <th colspan="1" class="text-center">Checkout</th>
+            </tr>
+            <tr>
+                <th>Totel:{{totel}}</th>
+            </tr>
+            </thead>
+        </table>
+
+    <div class="d-flex justify-content mx-auto">
+        <a href="{% url 'cart:orderform' %}" class="btn border-secondary rounded-pill" >Place Order</a>
+        <a href="{% url 'shop:categories' %}" class="btn border-secondary rounded-pill">Continue Shopping</a>
+    </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

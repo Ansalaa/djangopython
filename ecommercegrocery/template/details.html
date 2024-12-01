@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- advertisement section -->
+	<div class="abt-section mb-150">
+		<div class="container">
+			<div class="abt-bg ">
+				<center>
+					<img src="{{pro.image.url}}" height="300px" width="50%" alt="...">
+				</center>
+			</div>
+			<div class="abt-text text-center">
+				<h2>{{pro.name}}</h2>
+				<p>{{pro.desc}}</p>
+				<p>Price : {{pro.price}} ₹</p>
+				<p>Stock : {{pro.stock}}</p>
+
+				{% if user.is_superuser %}  <!--if user is admin -->
+
+				{% if pro.stock > 0 %}
+				<p>Product in Stock</p>
+				<a href="{% url 'shop:addstock' pro.id %}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add Stock</a>
+
+				{% else%}
+				<p>Product out of Stock</p>
+				<a href="{% url 'shop:addstock' pro.id %}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add Stock</a>
+				{% endif %}
+
+				{% else %}
+
+				{% if pro.stock > 0 %}
+				<a href="{% url 'cart:addcart' pro.id %}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+				{% else%}
+				<p>Product out of Stock</p>
+				{% endif %}
+
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<!-- end advertisement section -->
+
+
+{% endblock %}

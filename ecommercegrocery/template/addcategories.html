@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-3">
+<h2 class="text-center">Add Categories</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+  <label class="form-label">Category Name</label>
+  <input type="text" class="form-control" name="t" placeholder="Enter Category name">
+</div>
+       <div class="mb-3">
+  <label class="form-label">Category Description</label>
+  <textarea class="form-control" rows="3" name="d" placeholder="Write your description"></textarea>
+</div>
+
+        <div class="mb-3">
+  <label class="form-label">Cover</label>
+  <input type="file" class="form-control" name="c">
+</div>
+
+        <div class="mb-3">
+  <input type="submit" class="btn btn-dark text-light px-4">
+</div>
+    </form>
+    </div>
+{% endblock %}

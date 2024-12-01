@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-3">
+<h2 class="text-center p-5 light">Billing Shop</h2>
+     <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="mb-3">
+  <label class="form-label">Address</label>
+  <textarea class="form-control" rows="3" name="a" placeholder="Write your description"></textarea>
+</div>
+        <div class="mb-3">
+  <label class="form-label">Phone</label>
+  <input type="number" class="form-control" name="n" placeholder="Enter phone number">
+</div>
+        <div class="mb-3">
+  <label class="form-label">Pincode</label>
+  <input type="number" class="form-control" name="p" placeholder="Enter pincode">
+</div>
+         <div class="mb-3">
+  <input type="submit" class="btn btn-dark text-light px-4">
+</div>
+    </form>
+</div>
+
+{% endblock %}

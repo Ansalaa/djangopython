@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+        <!-- Hero Start -->
+<div class="container-fluid py-5 mb-5 hero-header">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-md-12 col-lg-7">
+                <h4 class="mb-3 text-secondary">100% Organic Foods</h4>
+                <h1 class="mb-5 display-3 text-primary">Organic Veggies & Fruits Foods</h1>
+                <div class="position-relative mx-auto">
+                    <input class="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number" placeholder="Search">
+                    <button type="submit" class="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style="top: 0; right: 25%;">Submit Now</button>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-5">
+                <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active rounded">
+                            <a href="#" class="btn px-4 py-2 text-white rounded"></a>
+                        </div>
+                        <div class="carousel-item rounded">
+                            <a href="#" class="btn px-4 py-2 text-white rounded"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Hero End -->
+
+
+<div class="container w-50 mx-auto mt-5">
+    <h1 class="text-center" style="font-size:50px;">Our Collections</h1>
+    <p style="text-align:justify;line-height:2;font-size:20px">"Welcome to FreshMart – your one-stop online grocery store for farm-fresh fruits,
+        crisp vegetables, and premium spices! We offer a wide variety of high-quality produce and
+        aromatic spices to bring flavor, nutrition, and convenience to your kitchen. From juicy
+        seasonal fruits and leafy greens to essential spices, shop with us for freshness you can
+        trust and doorstep delivery you’ll love."</p>
+</div>
+        <!-- Fruits Shop Start-->
+        <div class="container-fluid fruite py-5">
+            <div class="container py-5">
+                <div class="tab-class text-center">
+                    <div class="row g-4">
+                        <div class="col-lg-4 text-start">
+                            <h1>Our Products</h1>
+                        </div>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="row g-4">
+                                        {% for i in cat %}
+                                        <div class="col-md-4 col-lg-4 col-xs-3 col-sm-12">
+                                            <div class="rounded position-relative fruite-item">
+                                                <div class="fruite-img">
+                                                    <img src="{{i.image.url}}" height="300px" width="100%" alt="">
+                                                </div>
+                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+
+
+                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <a href="{% url 'shop:products' i.id %}" class="btn border border-secondary rounded-pill px-3 text-primary">{{i.name}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fruits Shop End-->
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container fluid mt-5 ms-0">
+    <img src="{{cat.image.url}}" height="550px" width="120%">
+</div>
+
+<div class="container-fluid fruite py-5">
+    <div class="container py-5">
+        <div class="tab-class text-center">
+            <h1 class="text-center" style="font-size:50px;">{{cat.name}}</h1>
+            <p style="text-align:justify;line-height:2;font-size:20px">{{cat.desc}}</p>
+            <div class="row g-4">
+                <div class="col-lg-4 text-start">
+                </div>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="row row-cols-1 row-cols-md-3 g-4">
+                                    {% for i in pro %}
+                                    <div class="col">
+                                        <div class="rounded position-relative fruite-item">
+                                            <div class="fruite-img">
+                                                <img src="{{i.image.url}}" height="250px" width="100%" alt="">
+                                            </div>
+                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                <h4>{{i.name}}</h4>
+                                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                                    <a href="{% url 'shop:details' i.id %}" class="btn border border-secondary rounded-pill px-3 text-primary">Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
